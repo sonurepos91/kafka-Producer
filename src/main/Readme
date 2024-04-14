@@ -1,0 +1,22 @@
+Steps To Perform CLI Operations in Apache Kafka
+
+Step1 : Install Apache Kafka and navigate to root location of Apache Kafka Folder eg : C:\Softwares\kafka_2.13-3.6.1
+Step2 : Start Zookeeper Services
+
+        Cmd : .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+Step3 : Start Kafka Services
+
+        Cmd : .\bin\windows\kafka-server-start.bat .\config\server.properties
+
+Step4 : Create Topics
+
+        Cmd : .\bin\windows\kafka-topics.bat --create --topic TOPIC_NAME --bootstrap-server localhost:9092
+
+Step5 : Write Events To to Topic Created(Producer)
+
+        Cmd : .\bin\windows\kafka-console-producer.bat --topic TOPIC_NAME --bootstrap-server localhost:9092
+
+Step6 : Read Events from the Topic (Consumer)
+
+        Cmd : .\bin\windows\kafka-console-consumer.bat --topic TOPIC_NAME  --from-beginning bootstrap-server:9092
