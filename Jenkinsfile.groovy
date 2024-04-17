@@ -53,8 +53,24 @@ pipeline {
         }
         stage("Build") {
             steps {
-                echo "Maven Build Started...... "
-                echo "Maven Build Completed...... "
+                script {
+                    echo "Maven Build Started...... "
+                    List PROJECT_WIN_VARS = [
+                            "JAVA_HOME=C:\\Program Files\\Java\\jdk-17\\",
+                            "MAVEN_HOME=C:\\Softwares\\apache-maven-3.9.5-bin\\apache-maven-3.9.5\\",
+                            "PATH=C:\\WINDOWS\\SYSTEM32;C:\\Softwares\\apache-maven-3.9.5-bin\\apache-maven-3.9.5\\bin;%PATH%"
+
+                    ]
+                    withEnv(PROJECT_WIN_VARS) {
+
+                        String PROJECT_PARAMS = "-Dmaven.test.failure.ignore=true"
+                        dir(env.WORKSPACE + '\\Project') {
+                            bat "mvn ${PROJECT_PARAMS} clean"
+                            bat "mvn ${PROJECT_PARAMS} package"
+                        }
+                    }
+                    echo "Maven Build Completed...... "
+                }
             }
         }
         stage("Deploy") {
@@ -74,8 +90,8 @@ def scmCheckout(String gitBranch, String gitUrl, Boolean gitPoll, Boolean change
     checkout changelog: false, poll: false,
             scm: scmGit(
                     branches: [[name: '*/' + gitBranch]],
-                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: env.WORKSPACE+ '\\Project']],
-                    relativeTargetDir: env.WORKSPACE+'\\Test',
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: env.WORKSPACE + '\\Project']],
+                    relativeTargetDir: env.WORKSPACE + '\\Project',
                     userRemoteConfigs:
                             [
                                     [url: gitUrl]]
