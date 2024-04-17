@@ -8,12 +8,12 @@ properties([parameters(
                         name: 'buildVersion'
                 ),
                 string(
-                        defaultValue: "develop",
+                        defaultValue: "",
                         description: "Git Branch",
                         name: "gitBranch"
                 ),
                 string(
-                        defaultValue: "https://github.com/sonurepos91/kafka-Producer.git",
+                        defaultValue: "",
                         description: "Git URL",
                         name: "gitUrl"
                 ),
@@ -37,13 +37,15 @@ pipeline {
     stages {
         stage("scmCheckout") {
             steps {
-                echo "Git  Checkout Started...... "
-                String gitBranch = params.gitBranch
-                String gitUrl = params.gitUrl
-                Boolean gitPoll = params.gitPoll
-                Boolean changeLog = params.changeLog
-                scmCheckout(gitBranch,gitUrl,gitPoll,changeLog)
-                echo "Git  Checkout Completed...... "
+                script {
+                    echo "Git  Checkout Started...... "
+                    String gitBranch = params.gitBranch
+                    String gitUrl = params.gitUrl
+                    Boolean gitPoll = params.gitPoll
+                    Boolean changeLog = params.changeLog
+                    scmCheckout(gitBranch, gitUrl, gitPoll, changeLog)
+                    echo "Git  Checkout Completed...... "
+                }
             }
         }
         stage("Build") {
@@ -60,6 +62,7 @@ pipeline {
         }
     }
 }
-def scmCheckout(String gitBranch,String gitUrl,Boolean gitPoll,Boolean changeLog){
+
+def scmCheckout(String gitBranch, String gitUrl, Boolean gitPoll, Boolean changeLog) {
 
 }
