@@ -8,12 +8,12 @@ properties([parameters(
                         name: 'buildVersion'
                 ),
                 string(
-                        defaultValue: "",
+                        defaultValue: "develop",
                         description: "Git Branch",
                         name: "gitBranch"
                 ),
                 string(
-                        defaultValue: "",
+                        defaultValue: "https://github.com/sonurepos91/kafka-Producer.git",
                         description: "Git URL",
                         name: "gitUrl"
                 ),
