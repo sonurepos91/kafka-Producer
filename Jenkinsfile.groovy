@@ -11,7 +11,23 @@ properties([parameters(
                         defaultValue: "",
                         description: "Git Branch",
                         name: "gitBranch"
+                ),
+                string(
+                        defaultValue: "",
+                        description: "Git URL",
+                        name: "gitUrl"
+                ),
+                booleanParam(
+                        defaultValue: false,
+                        description: "Git Poll Enabled",
+                        name: "gitPoll"
+                ),
+                booleanParam(
+                        defaultValue: false,
+                        description: "Git ChangeLog Enabled",
+                        name: "changeLog"
                 )
+
         ]
 )])
 pipeline {
@@ -19,23 +35,31 @@ pipeline {
     agent any
 
     stages {
-        stage('Clean') {
+        stage('scmCheckout') {
             steps {
-                echo "Maven Clean Started...... "
-                echo "Maven Clean Started...... "
+                echo "Git  Checkout Started...... "
+                String gitBranch = params.gitBranch
+                String gitUrl = params.gitUrl
+                Boolean gitPoll = params.gitPoll
+                Boolean changeLog = params.changeLog
+                scmCheckout(gitBranch,gitUrl,gitPoll,changeLog)
+                echo "Git  Checkout Completed...... "
             }
         }
         stage('Build') {
             steps {
                 echo "Maven Build Started...... "
-                echo "Maven Build Started...... "
+                echo "Maven Build Completed...... "
             }
         }
         stage('Deploy') {
             steps {
                 echo "Deploy Started...... "
-                echo "Deploy Done...... "
+                echo "Deploy Completed...... "
             }
         }
     }
+}
+def scmCheckout(String gitBranch,String gitUrl,Boolean gitPoll,Boolean changeLog){
+
 }
