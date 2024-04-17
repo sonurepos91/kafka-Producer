@@ -64,6 +64,6 @@ pipeline {
 }
 
 def scmCheckout(String gitBranch, String gitUrl, Boolean gitPoll, Boolean changeLog) {
-    echo "Git CLone start with following config : GitBranch : " + ${gitBranch} +" GitUrl : " + ${gitUrl} + " gitPoll : " + ${gitPoll} + " changeLog : " + ${changeLog}
+    echo "Git CLone start with following config : GitBranch : " + gitBranch +" GitUrl : " + gitUrl + " gitPoll : " + gitPoll + " changeLog : " + changeLog
 
 }
