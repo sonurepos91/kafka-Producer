@@ -3,7 +3,7 @@
 properties([parameters(
         [
                 choice(
-                        choices: ['6.0.4','6.0.3', '6.0.0'].join("\n"),
+                        choices: ['6.0.4', '6.0.3', '6.0.0'].join("\n"),
                         description: 'Build Version',
                         name: 'buildVersion'
                 ),
@@ -14,22 +14,28 @@ properties([parameters(
                 )
         ]
 )])
-pipeline{
+pipeline {
 
     agent any
 
-    stages{
-        stage('Clean'){
-            echo "Maven Clean Started...... "
-            echo "Maven Clean Started...... "
+    stages {
+        stage('Clean') {
+            steps {
+                echo "Maven Clean Started...... "
+                echo "Maven Clean Started...... "
+            }
         }
-        stage('Build'){
-            echo "Maven Build Started...... "
-            echo "Maven Build Started...... "
+        stage('Build') {
+            steps {
+                echo "Maven Build Started...... "
+                echo "Maven Build Started...... "
+            }
         }
-        stage('Deploy'){
-            echo "Deploy Started...... "
-            echo "Deploy Done...... "
+        stage('Deploy') {
+            steps {
+                echo "Deploy Started...... "
+                echo "Deploy Done...... "
+            }
         }
     }
 }
