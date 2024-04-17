@@ -35,7 +35,7 @@ pipeline {
     agent any
 
     stages {
-        stage('scmCheckout') {
+        stage("scmCheckout") {
             steps {
                 echo "Git  Checkout Started...... "
                 String gitBranch = params.gitBranch
@@ -46,13 +46,13 @@ pipeline {
                 echo "Git  Checkout Completed...... "
             }
         }
-        stage('Build') {
+        stage("Build") {
             steps {
                 echo "Maven Build Started...... "
                 echo "Maven Build Completed...... "
             }
         }
-        stage('Deploy') {
+        stage("Deploy") {
             steps {
                 echo "Deploy Started...... "
                 echo "Deploy Completed...... "
