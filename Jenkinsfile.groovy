@@ -67,6 +67,17 @@ pipeline {
 }
 
 def scmCheckout(String gitBranch, String gitUrl, Boolean gitPoll, Boolean changeLog) {
-    echo "Git CLone start with following config : GitBranch : " + gitBranch +" GitUrl : " + gitUrl + " gitPoll : " + gitPoll + " changeLog : " + changeLog
+    echo "Git CLone start with following config : GitBranch : " + gitBranch + " GitUrl : " + gitUrl + " gitPoll : " + gitPoll + " changeLog : " + changeLog
+    def workspace = env.WORKSPACE
+    echo "Workspace :" + workspace
 
+    checkout changelog: false, poll: false,
+            scm: scmGit(
+                    branches: [[name: '*/' + gitBranch]],
+                    extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: env.WORKSPACE+ '\\Project']],
+                    relativeTargetDir: env.WORKSPACE+'\\Test',
+                    userRemoteConfigs:
+                            [
+                                    [url: gitUrl]]
+            )
 }
