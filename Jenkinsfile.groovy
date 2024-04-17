@@ -14,3 +14,22 @@ properties([parameters(
                 )
         ]
 )])
+pipeline{
+
+    agent any
+
+    stages{
+        stage('Clean'){
+            echo "Maven Clean Started...... "
+            echo "Maven Clean Started...... "
+        }
+        stage('Build'){
+            echo "Maven Build Started...... "
+            echo "Maven Build Started...... "
+        }
+        stage('Deploy'){
+            echo "Deploy Started...... "
+            echo "Deploy Done...... "
+        }
+    }
+}
