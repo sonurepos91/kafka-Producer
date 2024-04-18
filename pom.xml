@@ -61,6 +61,7 @@
             </configuration>
         </plugin>
 		</plugins>
+		<finalName>dockerize-0.0.1</finalName>
 	</build>
 
 </project>
